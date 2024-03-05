@@ -1,25 +1,30 @@
 // EnterEmailScreen.js
 import React, { useState } from 'react';
 import { Image } from 'react-native';
-import { View, Text, TextInput, StyleSheet, Dimensions } from 'react-native';
+import { View, Text as RNText, TextInput, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
+import { COMPANY_NAME, VERSION, FONT_FAMILY } from '../config';
+import Footer from '../components/Footer';
 
 const windowWidth = Dimensions.get('window').width;
+
+const Text = (props) => <RNText {...props} style={[props.style, { fontFamily: FONT_FAMILY }]} />; // Use FONT_FAMILY
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#8A2BE2',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 30,
     marginBottom: 20,
-    color: 'white',
+    color: 'black',
     // Align the text to the left
-    marginBottom:30
+    marginBottom: 30,
+    fontFamily: FONT_FAMILY,
   },
   textInput: {
     height: 40,
@@ -30,11 +35,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     width: '100%',
+    borderRadius: 10,
+    fontFamily: FONT_FAMILY,
   },
   button: {
-    width: windowWidth - 40, // Adjusted button width
+    width: windowWidth - 120, // Adjusted button width
     marginTop: 20,
-    backgroundColor: '#4B0082',
+    backgroundColor: '#6495ED',
+    borderRadius: 10,
+    fontFamily: FONT_FAMILY,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  footerText: {
+    color: 'grey',
+    fontFamily: FONT_FAMILY,
   },
 });
 
@@ -57,26 +76,21 @@ const EnterEmailScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
 
-      <Image
-        source={require('./email.png')}
-        style={{ width: 200, height: 200 }}
-      />
-      
-      <Text style={{marginBottom:20,color: 'white'}}>Enter your email address to recieve a verification code</Text>
-      <Text style={{  color: 'white' }}>Email Address</Text>
+      <Text style={{ marginBottom: 20, color: 'black', fontFamily: FONT_FAMILY }}>
+        Enter your email address to receive a verification code
+      </Text>
+      <Text style={{ color: 'black', fontFamily: FONT_FAMILY }}>Email Address</Text>
       <TextInput
         style={styles.textInput}
-        placeholder="Your Email"
+        placeholder="Enter Email"
         keyboardType="email-address"
         autoCapitalize="none"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <Button
-        title="Get OTP"
-        buttonStyle={styles.button}
-        onPress={handleNext}
-      />
+      <Button title="Submit" buttonStyle={styles.button} onPress={handleNext} />
+
+      <Footer />
     </View>
   );
 };
