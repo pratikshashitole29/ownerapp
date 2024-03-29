@@ -1,14 +1,11 @@
 // EnterEmailScreen.js
 import React, { useState } from 'react';
-import { Image } from 'react-native';
-import { View, Text as RNText, TextInput, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import { COMPANY_NAME, VERSION, FONT_FAMILY } from '../config';
 import Footer from '../components/Footer';
 
 const windowWidth = Dimensions.get('window').width;
-
-const Text = (props) => <RNText {...props} style={[props.style, { fontFamily: FONT_FAMILY }]} />; // Use FONT_FAMILY
 
 const styles = StyleSheet.create({
   container: {
@@ -22,9 +19,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginBottom: 20,
     color: 'black',
-    // Align the text to the left
     marginBottom: 30,
-    fontFamily: FONT_FAMILY,
+    fontFamily: 'ROBOTO',
   },
   textInput: {
     height: 40,
@@ -36,24 +32,25 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
     borderRadius: 10,
-    fontFamily: FONT_FAMILY,
+    fontFamily: 'ROBOTO',
   },
   button: {
-    width: windowWidth - 120, // Adjusted button width
+    width: windowWidth - 120,
     marginTop: 20,
     backgroundColor: '#6495ED',
     borderRadius: 10,
-    fontFamily: FONT_FAMILY,
+    fontFamily: 'ROBOTO',
   },
   footer: {
     position: 'absolute',
     bottom: 0,
     backgroundColor: 'white',
     alignItems: 'center',
+    fontFamily: 'ROBOTO'
   },
   footerText: {
     color: 'grey',
-    fontFamily: FONT_FAMILY,
+    fontFamily: 'ROBOTO',
   },
 });
 
@@ -76,10 +73,10 @@ const EnterEmailScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
 
-      <Text style={{ marginBottom: 20, color: 'black', fontFamily: FONT_FAMILY }}>
+      <Text style={{ marginBottom: 20, color: 'black', fontFamily:'ROBOTO' }}>
         Enter your email address to receive a verification code
       </Text>
-      <Text style={{ color: 'black', fontFamily: FONT_FAMILY }}>Email Address</Text>
+      <Text style={{ color: 'black', fontFamily: 'ROBOTO' }}>Email Address</Text>
       <TextInput
         style={styles.textInput}
         placeholder="Enter Email"
@@ -88,7 +85,7 @@ const EnterEmailScreen = ({ navigation }) => {
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <Button title="Submit" buttonStyle={styles.button} onPress={handleNext} />
+      <Button title="Submit"   titleStyle={{ fontFamily: 'ROBOTO' }} buttonStyle={styles.button} onPress={handleNext} />
 
       <Footer />
     </View>

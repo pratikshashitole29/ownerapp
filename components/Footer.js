@@ -1,12 +1,9 @@
 // Footer.js
 import React from 'react';
-import { View, Text as RNText, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { COMPANY_NAME, VERSION, FONT_FAMILY } from '../config';
-
-//const Text = (props) => <RNText {...props} style={[props.style, { fontFamily: FONT_FAMILY }]} />; // Use FONT_FAMILY
-const Text = (props) => (
-  <RNText {...props} style={[props.style, { fontFamily: `${FONT_FAMILY}, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif` }]} />
-);
+import { lightTheme,darkTheme } from '../constants/ThemeStyles';
+import { useTheme } from '../components/ThemeProvider';
 const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
@@ -18,16 +15,32 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: 'grey',
-    fontFamily: FONT_FAMILY,
-    //font:'Roboto'
+ fontFamily:'ROBOTO'
   },
 });
 
 const Footer = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+  const containerStyle = {
+    backgroundColor: isDarkMode ? darkTheme.backgroundColor : lightTheme.backgroundColor,
+  };
+
+  const PagecontainerStyle = {
+    backgroundColor: isDarkMode ? darkTheme.PageContainer : lightTheme.PageContainer,
+  };
+
+  const textStyle = {
+    color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+  };
+
+  const borderColorStyle = {
+    borderColor: isDarkMode ? 'white' : 'black',
+  };
+
   return (
-    <View style={styles.footer}>
-      <Text style={styles.footerText}>{COMPANY_NAME}</Text>
-      <Text style={styles.footerText}>{VERSION}</Text>
+    <View style={[styles.footer, containerStyle]}>
+       <Text style={[styles.footerText, textStyle]}>{COMPANY_NAME}</Text>
+       <Text style={[styles.footerText, textStyle]}>{VERSION}</Text>
     </View>
   );
 };

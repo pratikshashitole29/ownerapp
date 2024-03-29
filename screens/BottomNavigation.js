@@ -13,12 +13,14 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
   return (
-    
     <SafeAreaView style={styles.container}>
       <Tab.Navigator
         tabBarOptions={{
           labelStyle: {
             fontSize: 14,
+          },
+          defaultLabelStyle: {
+            fontFamily:'MadimiOne' // Set your custom font family here
           },
         }}>
         <Tab.Screen
@@ -29,9 +31,6 @@ const BottomNavigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="people" size={size} color={color} />
             ),
-            drawerLabelStyle: {
-              fontFamily: 'Roboto-Regular',  // Add your custom font family here
-            },
           }}
         />
         <Tab.Screen
@@ -42,9 +41,6 @@ const BottomNavigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="receipt" size={size} color={color} />
             ),
-            drawerLabelStyle: {
-              fontFamily: 'Roboto-Regular',  // Add your custom font family here
-            },
           }}
         />
         <Tab.Screen
@@ -55,9 +51,6 @@ const BottomNavigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="home" size={size} color={color} />
             ),
-            drawerLabelStyle: {
-              fontFamily: 'Roboto-Regular',  // Add your custom font family here
-            },
           }}
         />
         <Tab.Screen
@@ -68,9 +61,6 @@ const BottomNavigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="shopping-cart" size={size} color={color} />
             ),
-            drawerLabelStyle: {
-              fontFamily: 'Roboto-Regular',  // Add your custom font family here
-            },
           }}
         />
         <Tab.Screen
@@ -81,14 +71,9 @@ const BottomNavigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="menu" size={size} color={color} />
             ),
-            drawerLabelStyle: {
-              fontFamily: 'Roboto-Regular',  // Add your custom font family here
-            },
           }}
         />
-        
       </Tab.Navigator>
-    
     </SafeAreaView>
   );
 };

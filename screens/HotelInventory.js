@@ -5,6 +5,7 @@ import BottomBar from '../components/BottomBar';
 
 
 const HotelInventory = () => {
+  
   return (
     <>
       <TitleBar title="Hotel Inventory"/>

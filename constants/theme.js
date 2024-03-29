@@ -5,7 +5,9 @@ export const COLORS = {
     // base colors
     primary: "#FC6D3F", // orange
     secondary: "#CDCDD2",   // gray
-
+     successButton:"#4CAF50",//green
+     cardColor:"#FFFFFF",
+     backGroundColor:"#dcdcdc",
     // colors
     black: "#1E1F20",
     white: "#FFFFFF",

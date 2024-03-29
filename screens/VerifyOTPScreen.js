@@ -1,6 +1,6 @@
 // VerifyOTPScreen.js
 import React, { useState } from 'react';
-import { View,Image, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import { icons } from '../constants';
 const windowWidth = Dimensions.get('window').width;
@@ -30,43 +30,31 @@ const styles = StyleSheet.create({
     margin: 5,
     textAlign: 'center',
     fontSize: 20,
-    backgroundColor:'white'
+    backgroundColor: 'white',
+    fontFamily: 'ROBOTO',
   },
   button: {
     width: windowWidth - 120, // Adjusted button width
     marginTop: 20,
     backgroundColor: '#6495ED',
     borderRadius: 10,
-    fontFamily:'Roboto-Regular'
+    fontFamily: 'ROBOTO',
   },
   resendContainer: {
     marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    fontFamily: 'ROBOTO',
   },
   resendText: {
     marginRight: 5,
-    fontFamily:'Roboto-Regular'
+    fontFamily: 'ROBOTO',
   },
   resendLink: {
     color: '#4B0082',
     textDecorationLine: 'underline',
+    fontFamily: 'ROBOTO',
   },
-
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: 'white',
-    alignItems: 'center',
-  
-  },
-  footerText: {
-    color: 'grey',
-    fontFamily: 'Roboto-Regular',
-  },
-  text:{
-    fontFamily:'Roboto-Regular',
-  }
 });
 
 const VerifyOTPScreen = ({ route, navigation }) => {
@@ -113,8 +101,7 @@ const VerifyOTPScreen = ({ route, navigation }) => {
 
   return (
     <>
-
-<Header
+      <Header
         leftComponent={
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image
@@ -126,52 +113,43 @@ const VerifyOTPScreen = ({ route, navigation }) => {
                 marginLeft: 10,
               }}
             />
-              
           </TouchableOpacity>
         }
-        centerComponent={{ text: 'Verify', style: { color: 'black', fontSize: 20 } }}
+        centerComponent={{ text: '', style: { color: 'black', fontSize: 20 } }}
         containerStyle={{
           backgroundColor: 'white',
           justifyContent: 'space-between',
           borderBottomColor: 'black', // Set the border color to black
-          borderBottomWidth: 1, 
+          borderBottomWidth: 1,
         }}
       />
 
-    <View style={styles.container}>
-   
-      {/* <Text style={{ fontSize: 24, marginBottom: 40,color:'white' }}>OTP Verification</Text> */}
-      <Text style={{color:'black',fontFamily:'Roboto-Regular'}}>Enter the OTP sent to {route.params.email}</Text>
-      <View style={styles.otpContainer}>
-        {otp.map((digit, index) => (
-          <TextInput
-            key={index}
-            style={styles.otpDigit}
-            keyboardType="numeric"
-            maxLength={1}
-            value={digit}
-            onChangeText={(value) => handleDigitChange(index, value)}
-            id={`otpInput_${index}`}
-          />
-        ))}
-      </View>
-      <View style={{...styles.resendContainer,marginBottom:40}}>
-        <Text style={styles.resendText}>Didn't receive the code?</Text>
-        <TouchableOpacity onPress={handleResend}>
-          <Text style={{...styles.resendLink,color:'blue',fontFamily:'Roboto-Regular'}}>Resend</Text>
-        </TouchableOpacity>
-      </View>
-      <Button
-        title="Submit"
-        buttonStyle={styles.button}
-        onPress={handleVerify}
-      />
+      <View style={styles.container}>
+        <Text style={{ color: 'black', fontFamily: 'ROBOTO' }}>Enter the OTP sent to {route.params.email}</Text>
+        <View style={styles.otpContainer}>
+          {otp.map((digit, index) => (
+            <TextInput
+              key={index}
+              style={styles.otpDigit}
+              keyboardType="numeric"
+              maxLength={1}
+              value={digit}
+              onChangeText={(value) => handleDigitChange(index, value)}
+              id={`otpInput_${index}`}
+            />
+          ))}
+        </View>
+        <View style={{ ...styles.resendContainer, marginBottom: 40 }}>
+          <Text style={styles.resendText}>Didn't receive the code?</Text>
+          <TouchableOpacity onPress={handleResend}>
+            <Text style={{ ...styles.resendLink, color: 'blue', fontFamily: 'ROBOTO' }}>Resend</Text>
+          </TouchableOpacity>
+        </View>
+        <Button title="Submit" titleStyle={{ fontFamily: 'ROBOTO' }} buttonStyle={styles.button} onPress={handleVerify} />
 
-      {/* Footer */}
-     
-      <Footer/>
-      
-    </View>
+        {/* Footer */}
+        <Footer />
+      </View>
     </>
   );
 };

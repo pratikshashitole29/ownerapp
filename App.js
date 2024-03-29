@@ -1,4 +1,9 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
 import React,{useState} from 'react';
+
+import { useFonts } from 'expo-font';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import EnterEmailScreen from './screens/EnterEmailScreen';
@@ -31,19 +36,44 @@ import Inventory from './screens/Inventory';
 import SaveInventory from './screens/SaveInventory';
 import UpdateInventory from './screens/UpdateInventory';
 import OrderViewScreen from './screens/OrderViewScreen';
+import { Text  } from 'react-native';
+
+import { FONT_FAMILY } from './config'; // Import font family from config.js
+import NewManageMenu from './screens/NewManageMenu';
+import CreateMenu from './screens/CreateMenu';
+import UpdateMenu from './screens/UpdateMenu';
+import LineChartScreen from './screens/LineChartScreen';
+import BarChartScreen from './screens/BarChartScreen';
+import PieChartScreen from './screens/PieChartScreen';
+import { ThemeProvider } from './components/ThemeProvider';
+import Calender from './screens/Calender';
+
+// RNText.defaultProps = {
+//   style: { fontFamily: FONT_FAMILY },
+// };
+
 const Stack = createStackNavigator();
 
 
 const App = () => {
+  let [fontsLoaded] = useFonts({
+    'ROBOTO': require('./assets/fonts/Lato-Light.ttf'),
+  });
+  
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>; // or some loading indicator
+  }
  
   
   return (
     
-    <>
+    <ThemeProvider>
+   
+   
     <NavigationContainer>
-      
+    
         
-      <Stack.Navigator initialRouteName="SplashScreen" headerMode='none' >
+      <Stack.Navigator initialRouteName="AppNavigation" headerMode='none' >
         
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="EnterEmail" component={EnterEmailScreen} />
@@ -53,6 +83,10 @@ const App = () => {
         <Stack.Screen name="ManageStaff" component={ManageStaffScreen} />
         <Stack.Screen name="ManageCategory" component={ManageCategory} />
         <Stack.Screen name="ManageMenu" component={ManageMenu} />
+        <Stack.Screen name="NewManageMenu" component={NewManageMenu} />
+        <Stack.Screen name="CreateMenu" component={CreateMenu} />
+        <Stack.Screen name="UpdateMenu" component={UpdateMenu} />
+        <Stack.Screen name="Calender" component={Calender}/>
         <Stack.Screen name="Manage Order" component={ManageOrder} />
         <Stack.Screen name="Order View" component={OrderViewScreen} />
 
@@ -60,9 +94,13 @@ const App = () => {
         <Stack.Screen name="Update" component={UpdateScreen} />
        <Stack.Screen name="AppNavigation" component={HomeScreen} />
        <Stack.Screen name="Reports" component={Reports} />
+       <Stack.Screen name="LineChart" component={LineChartScreen} />
+
        <Stack.Screen name="Menu" component={Menu} />
        <Stack.Screen name="Order" component={ManageOrder} />
        <Stack.Screen name="Staff" component={Staff} />
+       <Stack.Screen name="BarChart" component={BarChartScreen} />
+        <Stack.Screen name="PieChart" component={PieChartScreen} />
        <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
        <Stack.Screen name="ManageBills" component={Bills} />
        <Stack.Screen name="ManageOrders" component={Order} />
@@ -73,15 +111,17 @@ const App = () => {
        <Stack.Screen name="HotelInventory" component={HotelInventory} />
        <Stack.Screen name="SaveCategoryDetails" component={SaveCategoryDetails} />
        <Stack.Screen name="UpdateCategoryDetails" component={UpdateCategoryDetails} />
-    </Stack.Navigator>
-       
-      
+    </Stack.Navigator> 
+    
       
     </NavigationContainer>
     
      
-     
-    </>
+    </ThemeProvider>
+
+
   )
 }
 export default App
+
+
